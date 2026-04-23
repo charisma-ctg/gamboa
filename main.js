@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
   }
 
-  /* ---- SCROLL REVEAL ---- */
+  /* ---- SCROLL REVEAL (FIXED) ---- */
   const revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length) {
     const ro = new IntersectionObserver((entries) => {
@@ -54,8 +54,26 @@ document.addEventListener('DOMContentLoaded', () => {
           ro.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => ro.observe(el));
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    revealEls.forEach(el => {
+      ro.observe(el);
+      // Force show if already in viewport on page load
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setTimeout(() => el.classList.add('visible'), 150);
+      }
+    });
+
+    // Also trigger reveal on page load after a short delay (fallback)
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          el.classList.add('visible');
+        }
+      });
+    }, 300);
   }
 
   /* ---- LOAD PROJECTS FROM JSON ---- */
@@ -84,6 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro2.unobserve(e.target); } });
           }, { threshold: 0.1 });
           ro2.observe(card);
+          // Force show if already visible
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            setTimeout(() => card.classList.add('visible'), 150);
+          }
         });
       })
       .catch(() => {
