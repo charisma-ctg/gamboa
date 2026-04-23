@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Quiz Tool | Charisma Gamboa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="subnav">
+  <a href="home.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  <span>Simple Quiz Tool</span>
+  <button class="theme-toggle-btn sm" id="themeToggleBtn" title="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="themeIcon"></i>
+  </button>
+</nav>
+
+<main class="tool-main">
+  <div class="tool-card">
+    <h2><i class="fa-solid fa-circle-question"></i> Simple Quiz Tool</h2>
+    <p class="tool-sub">Time Left: <span id="timer" class="timer-text">30</span> seconds</p>
+
+    <div class="quiz-progress-bar">
+      <div class="quiz-progress-fill" id="timerBar" style="width:100%"></div>
+    </div>
+
+    <form id="quizForm">
+      <div class="quiz-question">
+        <p>1. What is 2 + 2?</p>
+        <label class="radio-opt"><input type="radio" name="q1" value="4"> 4</label>
+        <label class="radio-opt"><input type="radio" name="q1" value="5"> 5</label>
+      </div>
+      <div class="quiz-question">
+        <p>2. What color is the sky?</p>
+        <label class="radio-opt"><input type="radio" name="q2" value="Blue"> Blue</label>
+        <label class="radio-opt"><input type="radio" name="q2" value="Green"> Green</label>
+      </div>
+      <div class="quiz-question">
+        <p>3. What is the capital of the Philippines?</p>
+        <label class="radio-opt"><input type="radio" name="q3" value="Manila"> Manila</label>
+        <label class="radio-opt"><input type="radio" name="q3" value="Cebu"> Cebu</label>
+      </div>
+      <div class="quiz-question">
+        <p>4. How many days are in a week?</p>
+        <label class="radio-opt"><input type="radio" name="q4" value="7"> 7</label>
+        <label class="radio-opt"><input type="radio" name="q4" value="5"> 5</label>
+      </div>
+      <div class="quiz-question">
+        <p>5. What planet do we live on?</p>
+        <label class="radio-opt"><input type="radio" name="q5" value="Earth"> Earth</label>
+        <label class="radio-opt"><input type="radio" name="q5" value="Mars"> Mars</label>
+      </div>
+      <button type="button" onclick="submitQuiz()" id="submitQuizBtn">Submit Quiz</button>
+    </form>
+
+    <div id="result" class="quiz-result"></div>
+    <a href="assistance.html" class="link-btn"><i class="fa-solid fa-arrow-left"></i> Back to Assistance Tool</a>
+  </div>
+</main>
+
+<footer>© 2026 Charisma T. Gamboa</footer>
+<script src="js/main.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

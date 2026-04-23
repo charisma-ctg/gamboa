@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Projects | Charisma Gamboa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="subnav">
+  <a href="home.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  <span>My Projects</span>
+  <button class="theme-toggle-btn sm" id="themeToggleBtn" title="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="themeIcon"></i>
+  </button>
+</nav>
+
+<div class="section-label" style="padding-top:2.5rem;">
+  <h2>My Projects</h2>
+  <p>Loaded from <code>data/projects.json</code> using JavaScript <code>fetch()</code></p>
+  <div class="divider"></div>
+</div>
+
+<div class="projects-row" id="projectsContainer" style="padding-bottom:3rem;">
+  <p style="text-align:center;color:var(--muted);padding:3rem;width:100%;">
+    <i class="fa-solid fa-spinner fa-spin"></i> Loading projects...
+  </p>
+</div>
+
+<footer>© 2026 Charisma T. Gamboa</footer>
+<script src="js/main.js"></script>
+<script>
+  // Projects data (inline fallback — works without a server too)
+  const projectsData = {
+    "projects": [
+      {
+        "id": 1,
+        "title": "Personal Portfolio Website",
+        "description": "A fully responsive portfolio website built with HTML, CSS, and JavaScript. Features dark mode, scroll reveal, form validation, and JSON data integration.",
+        "tech": ["HTML5", "CSS3", "JavaScript", "JSON"],
+        "category": "Web Development",
+        "status": "Completed",
+        "year": "2025",
+        "icon": "fa-globe",
+        "color": "pink"
+      },
+      {
+        "id": 2,
+        "title": "Student Grade Tracker",
+        "description": "A web-based grade tracking system where students can input grades, compute GWA, and visualize performance per subject using dynamic tables.",
+        "tech": ["HTML5", "CSS3", "JavaScript"],
+        "category": "Web App",
+        "status": "Completed",
+        "year": "2024",
+        "icon": "fa-graduation-cap",
+        "color": "purple"
+      },
+      {
+        "id": 3,
+        "title": "Library Management System",
+        "description": "A simple library system with book inventory, borrowing records, and user management built using PHP and MySQL.",
+        "tech": ["PHP", "MySQL", "HTML5", "CSS3"],
+        "category": "Database",
+        "status": "Completed",
+        "year": "2024",
+        "icon": "fa-book",
+        "color": "teal"
+      },
+      {
+        "id": 4,
+        "title": "Weather App",
+        "description": "A weather application that fetches real-time data using a public API. Shows temperature, humidity, and conditions for any city.",
+        "tech": ["JavaScript", "REST API", "CSS3"],
+        "category": "API Integration",
+        "status": "In Progress",
+        "year": "2025",
+        "icon": "fa-cloud-sun",
+        "color": "blue"
+      }
+    ]
+  };
+
+  const container = document.getElementById('projectsContainer');
+  container.innerHTML = '';
+  projectsData.projects.forEach(proj => {
+    const statusClass = proj.status === 'Completed' ? 'status-done' : 'status-wip';
+    const tags = proj.tech.map(t => `<span class="pj-tag">${t}</span>`).join('');
+    const card = document.createElement('div');
+    card.classList.add('project-json-card', proj.color, 'reveal');
+    card.innerHTML = `
+      <div class="pj-icon"><i class="fa-solid ${proj.icon}"></i></div>
+      <span class="pj-status ${statusClass}">${proj.status}</span>
+      <p class="pj-title">${proj.title}</p>
+      <p class="pj-desc">${proj.description}</p>
+      <div class="pj-tags">${tags}</div>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem;">${proj.year} · ${proj.category}</p>
+    `;
+    container.appendChild(card);
+    setTimeout(() => {
+      const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      ro.observe(card);
+    }, 50);
+  });
+</script>
+</body>
+</html>

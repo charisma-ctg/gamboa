@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Project | Charisma Gamboa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="subnav">
+  <a href="home.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  <span>My Project</span>
+  <button class="theme-toggle-btn sm" id="themeToggleBtn" title="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="themeIcon"></i>
+  </button>
+</nav>
+
+<main class="project-main">
+  <div class="section-label" style="padding-top:2rem;">
+    <h2>My Portfolio 🌸</h2>
+    <p>Sample multimedia content</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="media-grid">
+    <div class="media-card">
+      <h3><i class="fa-solid fa-music"></i> Sample Audio</h3>
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem;">Palagi – TJ Monterde</p>
+      <audio controls style="width:100%;border-radius:8px;">
+        <source src="assets/palagi.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+      </audio>
+    </div>
+
+    <div class="media-card">
+      <h3><i class="fa-solid fa-video"></i> Sample Video</h3>
+      <p style="color:var(--muted);font-size:.9rem;margin-bottom:1rem;">GSOT — Featured video</p>
+      <video controls style="width:100%;border-radius:8px;max-height:300px;">
+        <source src="assets/GSOT.mp4" type="video/mp4">
+        Your browser does not support video.
+      </video>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 Charisma T. Gamboa</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

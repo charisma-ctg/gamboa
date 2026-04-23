@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Story | Charisma Gamboa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="subnav">
+  <a href="home.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  <span>My Story</span>
+  <button class="theme-toggle-btn sm" id="themeToggleBtn" title="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="themeIcon"></i>
+  </button>
+</nav>
+
+<main style="display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 120px);padding:2rem;">
+  <div class="story-box">
+    <div class="story-progress">
+      <span id="storyProgress">1 / 4</span>
+    </div>
+    <div class="story-icon-wrap" id="icon"></div>
+    <h2 id="title"></h2>
+    <p id="text"></p>
+    <div class="story-nav-btns">
+      <button class="prev" onclick="prev()"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+      <button class="next" onclick="next()">Next <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+    <button class="close-btn" onclick="closeStory()"><i class="fa-solid fa-lock"></i> Close</button>
+  </div>
+</main>
+
+<footer>© 2026 Charisma T. Gamboa</footer>
+
+<script src="js/main.js"></script>
+<script>
+  const story = [
+    { icon: "fa-star",     title: "Luna the Little Star",  text: "High in the night sky lived Luna, a small star who dreamed of shining brighter." },
+    { icon: "fa-moon",     title: "Feeling Small",         text: "Luna often compared herself to brighter stars and felt she was not enough." },
+    { icon: "fa-lightbulb",title: "New Understanding",     text: "Luna realized her gentle light helped guide people safely through the night." },
+    { icon: "fa-heart",    title: "Shining with Purpose",  text: "Luna learned that every light has a purpose, no matter how small." }
+  ];
+
+  let i = 0;
+
+  function show() {
+    document.getElementById("icon").innerHTML = `<i class="fas ${story[i].icon}" style="font-size:3.5rem;color:var(--pink);"></i>`;
+    document.getElementById("title").innerText = story[i].title;
+    document.getElementById("text").innerText  = story[i].text;
+    document.getElementById("storyProgress").innerText = `${i+1} / ${story.length}`;
+  }
+
+  function next() {
+    if (i < story.length - 1) { i++; show(); }
+    else { alert("End of the story 💖"); }
+  }
+
+  function prev() {
+    if (i > 0) { i--; show(); }
+  }
+
+  function closeStory() { window.location.href = "home.html"; }
+
+  show();
+</script>
+</body>
+</html>

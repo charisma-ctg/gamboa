@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Charisma Gamboa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Subnav header -->
+  <nav class="subnav">
+    <a href="home.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <span>Login</span>
+    <button class="theme-toggle-btn sm" id="themeToggleBtn" title="Toggle dark mode">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+  </nav>
+
+  <!-- Main form -->
+  <main class="tool-main">
+    <div class="modal-form active" id="formLogin">
+      <h2>Login 💖</h2>
+
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="your@email.com">
+
+      <label>Password</label>
+      <div class="pw-wrap">
+        <input type="password" id="loginPassword" placeholder="Enter your password">
+        <button class="eye-btn" type="button" onclick="togglePassword('loginPassword')"><i class="fa-solid fa-eye"></i></button>
+      </div>
+
+      <button class="submit-btn" onclick="loginUser()">Login</button>
+
+      <div class="success-message" id="loginMsg" style="display:none;">🔐 Login Successful!</div>
+    </div>
+  </main>
+
+  <script>
+    // Dark mode toggle
+    const themeBtn = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      if (document.body.classList.contains('dark')) {
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+    });
+
+    // Show success message
+    function loginUser() {
+      document.getElementById('loginMsg').style.display = 'block';
+    }
+
+    // Toggle password visibility
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+    }
+  </script>
+</body>
+</html>

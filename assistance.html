@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Educational Assistance Tool | Charisma Gamboa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="subnav">
+  <a href="home.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  <span>Educational Assistance Tool</span>
+  <button class="theme-toggle-btn sm" id="themeToggleBtn" title="Toggle dark mode">
+    <i class="fa-solid fa-moon" id="themeIcon"></i>
+  </button>
+</nav>
+
+<main class="tool-main">
+  <div class="tool-card">
+    <h2><i class="fa-solid fa-graduation-cap"></i> Educational Assistance Tool</h2>
+    <p class="tool-sub">Answer the questions below and check your knowledge!</p>
+
+    <div class="qa-item">
+      <p class="qa-question">1. How much is the tuition fee per semester?</p>
+      <div class="qa-input-row">
+        <input type="text" id="q1Input" placeholder="Type your answer">
+        <button onclick="checkAnswer(1)">Submit</button>
+      </div>
+      <p class="feedback" id="feedback1"></p>
+    </div>
+
+    <div class="qa-item">
+      <p class="qa-question">2. What time does the class start?</p>
+      <div class="qa-input-row">
+        <input type="text" id="q2Input" placeholder="Type your answer">
+        <button onclick="checkAnswer(2)">Submit</button>
+      </div>
+      <p class="feedback" id="feedback2"></p>
+    </div>
+
+    <div class="qa-item">
+      <p class="qa-question">3. OLSHCO stands for?</p>
+      <div class="qa-input-row">
+        <input type="text" id="q3Input" placeholder="Type your answer">
+        <button onclick="checkAnswer(3)">Submit</button>
+      </div>
+      <p class="feedback" id="feedback3"></p>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar" style="width:0%"></div>
+    </div>
+    <p class="progress-text" id="progress"></p>
+
+    <a href="quiz.html" class="link-btn">Go to Quiz Tool <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</main>
+
+<footer>© 2026 Charisma T. Gamboa</footer>
+<script src="js/main.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

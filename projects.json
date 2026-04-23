@@ -1,0 +1,48 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Personal Portfolio Website",
+      "description": "A fully responsive portfolio website built with HTML, CSS, and JavaScript. Features dark mode toggle, scroll reveal, form validation, and JSON data integration.",
+      "tech": ["HTML5", "CSS3", "JavaScript", "JSON"],
+      "category": "Web Development",
+      "status": "Completed",
+      "year": "2025",
+      "icon": "fa-globe",
+      "color": "pink"
+    },
+    {
+      "id": 2,
+      "title": "Student Grade Tracker",
+      "description": "A web-based grade tracking system where students can input their grades, compute their GWA, and visualize performance per subject using dynamic tables.",
+      "tech": ["HTML5", "CSS3", "JavaScript"],
+      "category": "Web App",
+      "status": "Completed",
+      "year": "2024",
+      "icon": "fa-graduation-cap",
+      "color": "purple"
+    },
+    {
+      "id": 3,
+      "title": "Library Management System",
+      "description": "A simple library management system with book inventory, borrowing records, and user management. Built using PHP and MySQL with a responsive front-end.",
+      "tech": ["PHP", "MySQL", "HTML5", "CSS3"],
+      "category": "Database",
+      "status": "Completed",
+      "year": "2024",
+      "icon": "fa-book",
+      "color": "teal"
+    },
+    {
+      "id": 4,
+      "title": "Weather App",
+      "description": "A weather application that fetches real-time weather data using a public API. Displays temperature, humidity, and weather conditions for any searched city.",
+      "tech": ["JavaScript", "REST API", "CSS3"],
+      "category": "API Integration",
+      "status": "In Progress",
+      "year": "2025",
+      "icon": "fa-cloud-sun",
+      "color": "blue"
+    }
+  ]
+}

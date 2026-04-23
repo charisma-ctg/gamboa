@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auth | Charisma Gamboa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* OTP Box styling */
+    .otp-box {
+      background: var(--pink-pale);
+      border: 2px dashed var(--pink-light);
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      font-weight: 700;
+      color: var(--pink);
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    /* OTP Input styling */
+    .otp-input {
+      width: 100%;
+      padding: 14px;
+      font-size: 1.4rem;
+      text-align: center;
+      letter-spacing: 6px;
+      border: 2px solid var(--pink-border);
+      border-radius: 12px;
+      margin: 12px 0 20px;
+      font-weight: bold;
+      color: var(--text);
+      background: var(--surface);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .otp-input:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 10px var(--pink-light);
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="subnav">
+    <a href="home.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <span>Register / Login</span>
+    <button class="theme-toggle-btn sm" id="themeToggleBtn" title="Toggle dark mode">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+  </nav>
+
+  <main class="tool-main">
+    <div class="modal-box">
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tabRegister" onclick="showTab('register')">Register</button>
+        <button class="modal-tab" id="tabLogin" onclick="showTab('login')">Login</button>
+      </div>
+
+      <!-- Register Form -->
+      <div class="modal-form active" id="formRegister">
+        <h2>Create Account 💖</h2>
+        <label>Email</label>
+        <input type="email" id="regEmail">
+        <label>Username</label>
+        <input type="text" id="regUsername">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="regPassword">
+          <button class="eye-btn" type="button" onclick="togglePassword('regPassword')"><i class="fa-solid fa-eye"></i></button>
+        </div>
+        <button class="submit-btn" onclick="saveUser()">Register</button>
+        <div class="success-message" id="successMsg" style="display:none;">✅ Successful Register!</div>
+        <div class="form-error" id="errorMsg" style="display:none;">⚠️ Please fill in all fields correctly.</div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="modal-form" id="formLogin">
+        <h2>Login 💖</h2>
+        <label>Email</label>
+        <input type="email" id="loginEmail">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="loginPassword">
+          <button class="eye-btn" type="button" onclick="togglePassword('loginPassword')"><i class="fa-solid fa-eye"></i></button>
+        </div>
+        <button class="submit-btn" onclick="loginUser()">Login</button>
+
+        <div class="google-divider"><hr><span>or</span><hr></div>
+        <button class="google-btn" onclick="googleLogin()"><i class="fa-brands fa-google"></i> Continue with Google</button>
+
+        <div class="success-message" id="loginMsg" style="display:none;">🔐 Login Successful!</div>
+        <div class="form-error" id="loginError" style="display:none;">⚠️ Please enter email and password.</div>
+      </div>
+    </div>
+
+    <!-- OTP Modal -->
+    <div class="modal-overlay" id="otpOverlay">
+      <div class="modal-box">
+        <h2 class="otp-title">Verify OTP 🔑</h2>
+        <p class="otp-sub">Enter the one-time password shown below</p>
+        <div class="otp-box" id="otpCode">Google sign-in OTP: <span id="otpValue"></span></div>
+        <input type="text" id="otpInput" placeholder="Enter 6-digit OTP" maxlength="6" class="otp-input">
+        <button class="submit-btn" onclick="verifyOtp()">Verify & Enter</button>
+        <div class="form-error" id="otpError" style="display:none;">⚠️ Invalid OTP, try again.</div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function showTab(tab) {
+      document.getElementById('formRegister').classList.remove('active');
+      document.getElementById('formLogin').classList.remove('active');
+      document.getElementById('tabRegister').classList.remove('active');
+      document.getElementById('tabLogin').classList.remove('active');
+      if(tab === 'register'){
+        document.getElementById('formRegister').classList.add('active');
+        document.getElementById('tabRegister').classList.add('active');
+      } else {
+        document.getElementById('formLogin').classList.add('active');
+        document.getElementById('tabLogin').classList.add('active');
+      }
+    }
+
+    const themeBtn=document.getElementById('themeToggleBtn');
+    const themeIcon=document.getElementById('themeIcon');
+    themeBtn.addEventListener('click',()=>{
+      document.body.classList.toggle('dark');
+      themeIcon.classList.toggle('fa-sun');
+      themeIcon.classList.toggle('fa-moon');
+    });
+
+    function saveUser(){
+      const email=document.getElementById('regEmail').value.trim();
+      const user=document.getElementById('regUsername').value.trim();
+      const pass=document.getElementById('regPassword').value.trim();
+      if(email && user && pass.length>=6){
+        document.getElementById('successMsg').style.display='block';
+        document.getElementById('errorMsg').style.display='none';
+      } else {
+        document.getElementById('successMsg').style.display='none';
+        document.getElementById('errorMsg').style.display='block';
+      }
+    }
+
+    function loginUser(){
+      const email=document.getElementById('loginEmail').value.trim();
+      const pass=document.getElementById('loginPassword').value.trim();
+      if(email && pass){
+        document.getElementById('loginMsg').style.display='block';
+        document.getElementById('loginError').style.display='none';
+      } else {
+        document.getElementById('loginMsg').style.display='none';
+        document.getElementById('loginError').style.display='block';
+      }
+    }
+
+    function googleLogin(){
+      const otp=Math.floor(100000+Math.random()*900000);
+      document.getElementById('otpValue').textContent=otp;
+      document.getElementById('otpOverlay').classList.add('active');
+      window.currentOtp=otp.toString();
+    }
+
+    function verifyOtp(){
+      const entered=document.getElementById('otpInput').value.trim();
+      if(entered===window.currentOtp){
+        document.getElementById('otpOverlay').classList.remove('active');
+        document.getElementById('loginMsg').style.display='block';
+        document.getElementById('loginError').style.display='none';
+        document.getElementById('otpError').style.display='none';
+      } else {
+        document.getElementById('otpError').style.display='block';
+      }
+    }
+
+    function togglePassword(id){
+      const input=document.getElementById(id);
+      input.type=input.type==="password"?"text":"password";
+    }
+  </script>
+</body>
+</html>
